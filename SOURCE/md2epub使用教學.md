@@ -12,22 +12,22 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 ### 1-2 安裝 Windows 版 Calibre2 [ https://calibre-ebook.com/zh_TW/download_windows](https://calibre-ebook.com/zh_TW/download_windows)
 * 進到 Calibre 的安裝畫面後，點 [ Advanced ] 
 
-![執行git clone命令](SOURCE/images/install-calibre2-01.png)
+![執行git clone命令](images/install-calibre2-01.png)
 
 * 將安裝路徑設為 C:\Calibre2\
 
-![執行git clone命令](SOURCE/images/install-calibre2-02.png)
+![執行git clone命令](images/install-calibre2-02.png)
 
 * 然後都按 NEXT 或 INSTALL 即可完成安裝。
 
 ### 1-3 安裝 Python 3.7 以上的版本(從Python官網下載安裝程式) 並安裝 markdown 模組 ( pip install markdown )
 * 進到 Python 的安裝畫面後，先勾選 [ &#8730; ] Add Python 3.x to Path，然後再按上面的 Install Now，然後都按下一步即可完成安裝。 
 
-![執行git clone命令](SOURCE/images/install-python-01.png)
+![執行git clone命令](images/install-python-01.png)
 
 * Python 安裝完成後，進入命令提示字元，輸入 pip install markdown [enter] 即可安裝 markdown 模組:
 
-![執行git clone命令](SOURCE/images/install-python-02.png)
+![執行git clone命令](images/install-python-02.png)
 
 
 ### 1-4 安裝 git 
@@ -45,22 +45,22 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 如果有，那就再來一個實例 !
 
 ### 2-1 按Win+R 輸入 cmd 再按 [ 確定 ] 開啟命令提示字元
-![images/001.png](SOURCE/images/001.png)
+![images/001.png](images/001.png)
 
 ### 2-2 在命令提示字元輸入 cd / [enter] 這時應該會切到 C磁碟根目錄 ( 例如 C:\\\> )
-![切到 C磁碟根目錄](SOURCE/images/002.png)
+![切到 C磁碟根目錄](images/002.png)
 
 ### 2-3 輸入 git clone https://github.com/ccutmis/md2epub.git [enter]
-![執行git clone命令](SOURCE/images/003.png)
+![執行git clone命令](images/003.png)
 
 ### 2-4 輸入 cd md2epub [enter] 這時應該會切到 C磁碟的md2epub目錄 ( 例如 C:\md2epub> )
-![切到 C磁碟的md2epub目錄](SOURCE/images/004.png)
+![切到 C磁碟的md2epub目錄](images/004.png)
 
 ### 2-5 輸入 python md2epub.py [enter]
-![執行md2epub.py進行文件轉換](SOURCE/images/005.png)
+![執行md2epub.py進行文件轉換](images/005.png)
 
 ### 2-6 假設一切運作順利，在執行完畢後，EPUB 目錄裡面就可以看到 電子書文件了(md2epub使用教學.epub)
-![文件轉換完成](SOURCE/images/006.png)
+![文件轉換完成](images/006.png)
 
 現在可以把 md2epub使用教學.epub 傳到 電子書閱讀器觀看成果了，相關運作機制會在下一節說明。
 
@@ -134,7 +134,7 @@ Markdown的目標是實現「易讀易寫」。 相關說明可以參考 markdow
 
 在 markdown 轉成 html 時，有些內容會變成不可視的，要讓原始碼正確顯示出來可以用 &#96;&#96;&#96; 與 &#96;&#96;&#96; 把原始碼內容包住，轉成 html 時就會在原始碼的外面加上&lt;pre&gt; ... &lt;&bsol;pre&gt; 標籤，例如:
 
-![原始碼顯示效果](SOURCE/images/007.png)
+![原始碼顯示效果](images/007.png)
 
 
 ### 4-4 *圖檔* :
@@ -142,11 +142,11 @@ Markdown的目標是實現「易讀易寫」。 相關說明可以參考 markdow
 ```
 ![圖檔的alt文字-這個在電子書瀏覽時沒意義](圖檔的連結)
 alt文字在這邊可以留空 例如:
-![ ](SOURCE/images/dog.png)
+![ ](images/dog.png)
 結果如下:
 ```
 
-![ ](SOURCE/images/dog.png)
+![ ](images/dog.png)
 
 ### 4-5 *分隔線* :
 
@@ -189,7 +189,7 @@ hr{border-top: 5px double red;}
 
 比如目前暫時不支援 markdown 有序列表的語法，又需要顯示有序列表，則可以直接編寫 html 語法 ( 雖說這作法與markdown的核心目標有衝突，但凡事總有例外，這個備案是可以接受的 )
 
-![有序列表 html 語法 ](SOURCE/images/008.png)
+![有序列表 html 語法 ](images/008.png)
 
 結果如下:
 
