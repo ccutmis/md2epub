@@ -176,6 +176,6 @@ def main():
     
     gen_epub(setting['EBOOK-ENGINE'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['EPUB_DIR_ROOT'].strip()+setting['fileName'].replace(".md",".epub").strip())
     # remove all files in TEMP when finished
-    delete_folder(setting['TEMP_DIR_ROOT'].strip())
+    #delete_folder(setting['TEMP_DIR_ROOT'].strip())
 if __name__ == "__main__": main()
 
