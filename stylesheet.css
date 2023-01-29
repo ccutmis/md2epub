@@ -11,4 +11,5 @@ h3{border-bottom:dashed 1px #999;}
 img{width:95%;display:block;margin:5px auto;}
 pre{background-color:#eee;border:dashed 1px #666;color:#000;margin:5px;}
 ul li{list-style-type:none;}
-hr{background-image: url(hr-bg01.png);background-repeat:repeat-x;height:30px; border:none;}
+hr{border-top: 5px dotted #999;}
+hr.bg01{background-image: url(hr-bg01.png);background-repeat:no-repeat;background-size: contain;height:70px; border:none !important;}

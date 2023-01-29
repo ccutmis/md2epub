@@ -4,6 +4,7 @@
 
 md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 文件轉換為 EPUB 格式的電子書，編排效果依照自己的想法實作出來，能自動生成目錄，可插入圖片等等。
 
+<hr class="bg01" />
 
 ## CH.1 系統需求
 
@@ -40,6 +41,8 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 * 從 Notepad++ 官網下載安裝程式進行安裝，之後會用它來編輯 markdown 文件及 setting.csv 設定檔。
 
 
+<hr class="bg01" />
+
 ## CH.2 沒有什麼是一個實例不能展示的
 
 如果有，那就再來一個實例 !
@@ -64,6 +67,7 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 
 現在可以把 md2epub使用教學.epub 傳到 電子書閱讀器觀看成果了，相關運作機制會在下一節說明。
 
+<hr class="bg01" />
 
 ## CH.3 實例說明
 
@@ -90,6 +94,8 @@ author, 作者名
 * 在 EPUB 資料夾裡就會看到新生成的 test01.epub，制作電子書就是這麼簡單 !
 
 下一節會簡單介紹編寫 markdown 文件的一些細節。
+
+<hr class="bg01" />
 
 ## CH.4 markdown 文件編寫注意事項
 
@@ -199,6 +205,15 @@ hr{border-top: 5px double red;}
 	<li>項目三</li>
 </ol>
 
+另一個範例，運用 html + css 語法 自訂水平分隔線背景
+
+```
+&lt;hr class="bg01" /&gt;
+```
+
+結果如下:
+
+<hr class="bg01" />
 
 ## CH.5 參考資料
 
