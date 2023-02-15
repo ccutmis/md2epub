@@ -1,0 +1,12 @@
+fileName	md2epub使用教學.md
+bookName	md2epub使用教學
+author	aloha3307
+EBOOK_ENGINE	C:\\Calibre2\\ebook-convert.exe
+SOURCE_DIR_ROOT	C:\\md2epub\\SOURCE\\
+TEMP_DIR_ROOT	C:\\md2epub\\TEMP\\
+RESULT_DIR_ROOT	C:\\md2epub\\RESULT\\
+EPUB_DIR_ROOT	C:\\md2epub\\EPUB\\
+IMAGES_DIR_ROOT	C:\\md2epub\\SOURCE\\images\\
+CSS_LOC	C:\\md2epub\\resource\\stylesheet.css
+ncx_fname	 toc.ncx
+opf_fname	 book-metadata.opf

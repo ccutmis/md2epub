@@ -2,6 +2,14 @@ import codecs as co
 import markdown as md
 import re,sys,os,shutil,time
 
+def escape_illgal_chars(txt):
+    replace_dict={ '\\':'＼', '*':'＊', '_':'＿', '{':'｛', '}':'｝', '[':'［', ']':'］', '(':'（', ')':'）', '#':'＃', '+':'＋', '-':'－', '.':'．', '!':'！' }
+    tmp_txt=txt
+    replace_ls=['\\','*','_','{','}','[',']','(',')','#','+','-','.','!']
+    for j in replace_ls:
+        tmp_txt=tmp_txt.replace(j,replace_dict[j])
+    return tmp_txt
+
 #創建目錄，如果目錄不存在
 def mkdir_if_not_exists(out_dir):
     if not os.path.exists(out_dir):
@@ -35,7 +43,18 @@ def get_img_list(source_dir,img_type=['jpg','png']):
 def gent_htm_from_md(source,temp,filename):
     fo = co.open(source+filename, mode="r", encoding="utf-8")
     fr = fo.read()
-    fr = re.sub(r"(```)([^`]*)(```)",r"<pre>\2</pre>",fr,re.DOTALL)
+    # call escape_illgal_chars()
+    fr=re.sub(r"([^`]{1})(`)([^`]{1}.*?[^`]{1})(`)([^`]{1})",r"\1『\3』\5",fr,re.DOTALL)
+    ls=re.findall("```.*?```",fr,re.DOTALL)
+    print(len(ls))
+    for i  in ls:
+        subtxt=i
+        start=fr.find(i)
+        start2=start+len(subtxt)
+        fr=fr[:start]+'<pre>'+i.replace('`','')+'</pre>'+fr[start2:]
+    
+    #fr = re.sub(r"^(```)([^`]*)(```)$",r"<pre>\2</pre>",fr,re.DOTALL)
+    #fr = fr.replace('{','&lbrace;').replace('}','&rbrace;')
     header_txt=re.findall(r"^# [^\n]*",fr,re.DOTALL)[0][2:].replace("\r","").replace("\n","")
     ht = md.markdown(fr)
     out = co.open(temp+filename.replace(".md",".htm"), "w+", encoding="utf-8", errors="xmlcharrefreplace")
@@ -116,7 +135,7 @@ def gent_ncx_from_htm(htm_fname,tmp_folder,book_name,h_text_ls):
         f.write(ncx_header+ncx_body+ncx_footer)
 
 def read_book_dict(book_dict_url):
-    return dict([i.replace('\n','').replace('\\\\','\\').split(',') for i in open(book_dict_url,'r',encoding='utf-8').readlines() if i!='\n'])
+    return dict([i.replace('\n','').replace('\\\\','\\').split('\t') for i in open(book_dict_url,'r',encoding='utf-8').readlines() if i!='\n'])
 
 def gent_content_opf(htm_fname,ncx_fname,opf_fname,book_name,author_name,img_ls):
     img_item_txt=""
@@ -157,7 +176,7 @@ def gen_epub(convert_url,opf_url,epub_url):
     print("GENT EPUB OK!")
 
 def main():
-    setting=read_book_dict('setting.csv')
+    setting=read_book_dict('resource\\setting.txt')
     print(setting['fileName'])
     mkdir_if_not_exists(setting['TEMP_DIR_ROOT'])
     mkdir_if_not_exists(setting['EPUB_DIR_ROOT'])
@@ -174,7 +193,7 @@ def main():
     gent_ncx_from_htm(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),setting['TEMP_DIR_ROOT'].strip(),setting['bookName'].strip(),headline_ls)
     gent_content_opf(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),setting['ncx_fname'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['bookName'].strip(),setting['author'].strip(),used_img_ls)
     
-    gen_epub(setting['EBOOK-ENGINE'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['EPUB_DIR_ROOT'].strip()+setting['fileName'].replace(".md",".epub").strip())
+    gen_epub(setting['EBOOK_ENGINE'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['EPUB_DIR_ROOT'].strip()+setting['fileName'].replace(".md",".epub").strip())
     # remove all files in TEMP when finished
     #delete_folder(setting['TEMP_DIR_ROOT'].strip())
 if __name__ == "__main__": main()

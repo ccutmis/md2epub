@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>623</width>
+    <height>524</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>623</width>
+    <height>524</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>623</width>
+    <height>524</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Markdown to EPUB 文件轉換器</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="app_title">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>561</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Markdown to EPUB 文件轉換器</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_go">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>80</y>
+      <width>161</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>開始轉換</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_14">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>379</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>＊ 以下欄位通常無須修改</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>379</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ebook-convert.exe 執行檔位置:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_EBOOK_ENGINE">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>385</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_2">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>81</y>
+      <width>97</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>.md文件名</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_fileName">
+    <property name="geometry">
+     <rect>
+      <x>119</x>
+      <y>81</y>
+      <width>291</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_3">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>107</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>書本名</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_4">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>133</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>作者名</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_author">
+    <property name="geometry">
+     <rect>
+      <x>119</x>
+      <y>133</y>
+      <width>291</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_bookName">
+    <property name="geometry">
+     <rect>
+      <x>119</x>
+      <y>107</y>
+      <width>291</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_8">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>271</y>
+      <width>122</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>SOURCE_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_9">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>297</y>
+      <width>96</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>TEMP_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_SOURCE_DIR_ROOT">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>271</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_RESULT_DIR_ROOT">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>323</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_10">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>323</y>
+      <width>114</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>RESULT_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_TEMP_DIR_ROOT">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>297</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_EPUB_DIR_ROOT">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>349</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_5">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>349</y>
+      <width>93</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>EPUB_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_7">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>375</y>
+      <width>119</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>IMAGES_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_IMAGES_DIR_ROOT">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>375</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_ncx_fname">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>427</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_11">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>401</y>
+      <width>78</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>CSS_DIR</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_CSS_LOC">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>401</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_13">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>453</y>
+      <width>102</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>opf_fname</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_opf_fname">
+    <property name="geometry">
+     <rect>
+      <x>144</x>
+      <y>453</y>
+      <width>260</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="app_title_12">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>427</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微軟正黑體</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ncx_fname</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>623</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
