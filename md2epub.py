@@ -55,7 +55,8 @@ def gent_htm_from_md(source,temp,filename):
     
     #fr = re.sub(r"^(```)([^`]*)(```)$",r"<pre>\2</pre>",fr,re.DOTALL)
     #fr = fr.replace('{','&lbrace;').replace('}','&rbrace;')
-    header_txt=re.findall(r"^# [^\n]*",fr,re.DOTALL)[0][2:].replace("\r","").replace("\n","")
+    #header_txt=re.findall(r"^# [^\n]*",fr,re.DOTALL)[0][2:].replace("\r","").replace("\n","")
+    header_txt = filename #####
     ht = md.markdown(fr)
     out = co.open(temp+filename.replace(".md",".htm"), "w+", encoding="utf-8", errors="xmlcharrefreplace")
     out.write(ht)
@@ -135,7 +136,28 @@ def gent_ncx_from_htm(htm_fname,tmp_folder,book_name,h_text_ls):
         f.write(ncx_header+ncx_body+ncx_footer)
 
 def read_book_dict(book_dict_url):
-    return dict([i.replace('\n','').replace('\\\\','\\').split('\t') for i in open(book_dict_url,'r',encoding='utf-8').readlines() if i!='\n'])
+    if not os.path.exists(book_dict_url): #找不到 setting file
+        cwd = os.getcwd()
+        cwd=cwd.replace("\\",'\\\\')
+        tmp_dict={}
+        tmp_dict['fileName'] = "md2epub使用教學.md"
+        tmp_dict['bookName'] = "md2epub使用教學"
+        tmp_dict['author'] = "Your Name"
+        tmp_dict['EBOOK_ENGINE'] = "C:\\Calibre2\\ebook-convert.exe"
+        tmp_dict['SOURCE_DIR_ROOT'] = cwd+r"\\SOURCE\\"
+        tmp_dict['TEMP_DIR_ROOT'] = cwd+r"\\TEMP\\"
+        tmp_dict['RESULT_DIR_ROOT'] = cwd+r"\\RESULT\\"
+        tmp_dict['EPUB_DIR_ROOT'] = cwd+r"\\EPUB\\"
+        tmp_dict['IMAGES_DIR_ROOT'] = cwd+r"\\SOURCE\\images\\"
+        tmp_dict['CSS_LOC'] = cwd+r"\\stylesheet.css"
+        tmp_dict['ncx_fname'] = "toc.ncx"
+        tmp_dict['opf_fname'] = "book-metadata.opf"
+        write_str="fileName	"+(tmp_dict['fileName'])+"\nbookName	"+(tmp_dict['bookName'])+"\nauthor	"+(tmp_dict['author'])+"\nEBOOK_ENGINE	"+(tmp_dict['EBOOK_ENGINE'])+"\nSOURCE_DIR_ROOT	"+(tmp_dict['SOURCE_DIR_ROOT'])+"\nTEMP_DIR_ROOT	"+(tmp_dict['TEMP_DIR_ROOT'])+"\nRESULT_DIR_ROOT	"+(tmp_dict['RESULT_DIR_ROOT'])+"\nEPUB_DIR_ROOT	"+(tmp_dict['EPUB_DIR_ROOT'])+"\nIMAGES_DIR_ROOT	"+(tmp_dict['IMAGES_DIR_ROOT'])+"\nCSS_LOC	"+(tmp_dict['CSS_LOC'])+"\nncx_fname	"+(tmp_dict['ncx_fname'])+"\nopf_fname	"+(tmp_dict['opf_fname'])+"\n"
+        with open(book_dict_url,'w+',encoding='utf-8') as f:
+            f.write(write_str)
+        return tmp_dict
+    else:
+        return dict([i.replace('\n','').replace('\\\\','\\').split('\t') for i in open(book_dict_url,'r',encoding='utf-8').readlines() if i!='\n'])
 
 def gent_content_opf(htm_fname,ncx_fname,opf_fname,book_name,author_name,img_ls):
     img_item_txt=""
@@ -184,8 +206,10 @@ def main():
     img_ls=get_img_list(setting['IMAGES_DIR_ROOT'])
     #print(img_ls)
     # 將 SOURCE/images/ 所有圖檔複制到 TEMP/
-    for i in img_ls:
-        shutil.copyfile(setting['IMAGES_DIR_ROOT']+i, setting['TEMP_DIR_ROOT']+i)
+    if img_ls != None and len(img_ls)>0:
+        if img_ls != None and len(img_ls)>0: #####
+            for i in img_ls:
+                shutil.copyfile(setting['IMAGES_DIR_ROOT']+i, setting['TEMP_DIR_ROOT']+i)
     # step1: md 2 htm save to temp
     header_txt=gent_htm_from_md(setting['SOURCE_DIR_ROOT'].strip(),setting['TEMP_DIR_ROOT'].strip(),setting['fileName'].strip())
     headline_ls,used_img_ls=add_headline_num_to_htm(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),header_txt,setting['CSS_LOC'].strip())
@@ -194,7 +218,7 @@ def main():
     gent_content_opf(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),setting['ncx_fname'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['bookName'].strip(),setting['author'].strip(),used_img_ls)
     
     gen_epub(setting['EBOOK_ENGINE'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['EPUB_DIR_ROOT'].strip()+setting['fileName'].replace(".md",".epub").strip())
-    # remove all files in TEMP when finished
-    #delete_folder(setting['TEMP_DIR_ROOT'].strip())
+    #remove all files in TEMP when finished
+    delete_folder(setting['TEMP_DIR_ROOT'].strip())
 if __name__ == "__main__": main()
 

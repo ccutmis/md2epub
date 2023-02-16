@@ -4,7 +4,7 @@ import re,sys,os,shutil,time
 
 class MdToEpub():
     def __init__(self):
-        pass
+        self.setting={}
     def escape_illgal_chars(self,txt):
         replace_dict={ '\\':'＼', '*':'＊', '_':'＿', '{':'｛', '}':'｝', '[':'［', ']':'］', '(':'（', ')':'）', '#':'＃', '+':'＋', '-':'－', '.':'．', '!':'！' }
         tmp_txt=txt
@@ -58,7 +58,8 @@ class MdToEpub():
         
         #fr = re.sub(r"^(```)([^`]*)(```)$",r"<pre>\2</pre>",fr,re.DOTALL)
         #fr = fr.replace('{','&lbrace;').replace('}','&rbrace;')
-        header_txt=re.findall(r"^# [^\n]*",fr,re.DOTALL)[0][2:].replace("\r","").replace("\n","")
+        #header_txt=re.findall(r"^# [^\n]*",fr,re.DOTALL)[0][2:].replace("\r","").replace("\n","")
+        header_txt = filename
         ht = md.markdown(fr)
         out = co.open(temp+filename.replace(".md",".htm"), "w+", encoding="utf-8", errors="xmlcharrefreplace")
         out.write(ht)
@@ -179,25 +180,26 @@ class MdToEpub():
         print("GENT EPUB OK!")
     
     def main(self):
-        setting=self.read_book_dict('resource\\setting.txt')
-        print(setting['fileName'])
-        self.mkdir_if_not_exists(setting['TEMP_DIR_ROOT'])
-        self.mkdir_if_not_exists(setting['EPUB_DIR_ROOT'])
+        self.setting=self.read_book_dict('resource\\setting.txt')
+        print(self.setting['fileName'])
+        self.mkdir_if_not_exists(self.setting['TEMP_DIR_ROOT'])
+        self.mkdir_if_not_exists(self.setting['EPUB_DIR_ROOT'])
         
-        img_ls=self.get_img_list(setting['IMAGES_DIR_ROOT'])
+        img_ls=self.get_img_list(self.setting['IMAGES_DIR_ROOT'])
         #print(img_ls)
         # 將 SOURCE/images/ 所有圖檔複制到 TEMP/
-        for i in img_ls:
-            shutil.copyfile(setting['IMAGES_DIR_ROOT']+i, setting['TEMP_DIR_ROOT']+i)
+        if img_ls != None and len(img_ls)>0: #####
+            for i in img_ls:
+                shutil.copyfile(self.setting['IMAGES_DIR_ROOT']+i, self.setting['TEMP_DIR_ROOT']+i)
         # step1: md 2 htm save to temp
-        header_txt=self.gent_htm_from_md(setting['SOURCE_DIR_ROOT'].strip(),setting['TEMP_DIR_ROOT'].strip(),setting['fileName'].strip())
-        headline_ls,used_img_ls=self.add_headline_num_to_htm(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),header_txt,setting['CSS_LOC'].strip())
+        header_txt=self.gent_htm_from_md(self.setting['SOURCE_DIR_ROOT'].strip(),self.setting['TEMP_DIR_ROOT'].strip(),self.setting['fileName'].strip())
+        headline_ls,used_img_ls=self.add_headline_num_to_htm(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),header_txt,self.setting['CSS_LOC'].strip())
         #print(headline_ls)
-        self.gent_ncx_from_htm(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),setting['TEMP_DIR_ROOT'].strip(),setting['bookName'].strip(),headline_ls)
-        self.gent_content_opf(setting['TEMP_DIR_ROOT'].strip()+setting['fileName'].strip().replace(".md",".htm"),setting['ncx_fname'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['bookName'].strip(),setting['author'].strip(),used_img_ls)
+        self.gent_ncx_from_htm(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),self.setting['TEMP_DIR_ROOT'].strip(),self.setting['bookName'].strip(),headline_ls)
+        self.gent_content_opf(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),self.setting['ncx_fname'].strip(),self.setting['TEMP_DIR_ROOT'].strip()+self.setting['opf_fname'].strip(),self.setting['bookName'].strip(),self.setting['author'].strip(),used_img_ls)
         
-        self.gen_epub(setting['EBOOK_ENGINE'].strip(),setting['TEMP_DIR_ROOT'].strip()+setting['opf_fname'].strip(),setting['EPUB_DIR_ROOT'].strip()+setting['fileName'].replace(".md",".epub").strip())
+        self.gen_epub(self.setting['EBOOK_ENGINE'].strip(),self.setting['TEMP_DIR_ROOT'].strip()+self.setting['opf_fname'].strip(),self.setting['EPUB_DIR_ROOT'].strip()+self.setting['fileName'].replace(".md",".epub").strip())
         #remove all files in TEMP when finished
-        self.delete_folder(setting['TEMP_DIR_ROOT'].strip())
+        self.delete_folder(self.setting['TEMP_DIR_ROOT'].strip())
 #if __name__ == "__main__": main()
 

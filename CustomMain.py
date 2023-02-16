@@ -11,7 +11,7 @@ class Ui(QtWidgets.QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi(ui_path, self)
         self.file_path=""
-        self.setting_file_path="resource\\setting.txt"
+        self.setting_file_path=os.getcwd()+"\\resource\\setting.txt"
         self.table_data_all=None
 
     def open_file(self):
@@ -128,7 +128,7 @@ class TableWidget(QTableWidget):
                     tmp_all_txt+=tmp_col_txt
         except:
             print("READ TABLE DATA FAIL!")
-        print(tmp_all_txt)
+        #print(tmp_all_txt)
         if tmp_all_txt!="":
             return tmp_all_txt
         else:
