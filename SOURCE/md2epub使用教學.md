@@ -6,6 +6,19 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 
 <hr class="bg01" />
 
+## 2023/02/17 新增 md2epub 主程式(免安裝Python-只支援windows作業系統) 
+
+https://github.com/ccutmis/ccutmis.github.io/raw/master/md2epub.zip
+
+使用說明 : 
+1. 把md2epub 整個資料夾解壓縮放至 C:\ 根目錄。
+2. 開啟網頁瀏覽器，搜尋'Calibre' 進入 Calibre 官網下載 Calibre 64bit 或從 [這裡直接進到下載頁面](https://calibre-ebook.com/download_windows)
+3. 安裝 calibre 時點下方的 Advance ，然後將安裝路徑設為 C:\calibre2 ，接著都按下一步完成安裝即可。
+4. 開啟 C:\md2epub 資料夾裡面的 app.exe ，然後按右上角的 "開始轉換", 執行完成之後在 EPUB 資料夾裡面就能看到剛才轉換完成的 .epub 文件檔案，這個文件檔可以傳到你的手機或是電子書閱讀器觀看了!
+
+
+<hr class="bg01" />
+
 ## CH.1 系統需求
 
 ### 1-1 作業系統 : Microsoft Windows 10 以上
@@ -81,15 +94,15 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 
 ### 3-2 用圖像處理軟體制作一張直式圖檔，命名為 "cover-image.png" ，並將它儲存到 SOURCE\\images 資料夾，另外在 "test01.md" 裡用到的圖檔也要放入這個資料夾。
 
-### 3-3 用 Notepad++ 開啟 "setting.csv" 把前三行做修改(後面的都不用改)，結果如下:
+### 3-3 用 Notepad++ 開啟 "resource\\setting.csv" 把前三行做修改(後面的都不用改)，結果如下:
 
 ```
-fileName, test01.md
-bookName, 書本標題名 
-author, 作者名
+fileName	test01.md
+bookName	書本標題名 
+author	作者名
 
 ```
-
+* 請注意分隔符號是 tab
 * 修改完畢記得存檔，然後重新執行 python md2epub.py [enter] 
 * 在 EPUB 資料夾裡就會看到新生成的 test01.epub，制作電子書就是這麼簡單 !
 

@@ -85,15 +85,15 @@ md2epub 使用 python (markdown模組) + calibre2，可以把寫好的 markdown 
 
 ### 3-2 用圖像處理軟體制作一張直式圖檔，命名為 "cover-image.png" ，並將它儲存到 SOURCE\\images 資料夾，另外在 "test01.md" 裡用到的圖檔也要放入這個資料夾。
 
-### 3-3 用 Notepad++ 開啟 "setting.csv" 把前三行做修改(後面的都不用改)，結果如下:
+### 3-3 用 Notepad++ 開啟 "resource\\setting.csv" 把前三行做修改(後面的都不用改)，結果如下:
 
 ```
-fileName, test01.md
-bookName, 書本標題名 
-author, 作者名
+fileName	test01.md
+bookName	書本標題名 
+author	作者名
 
 ```
-
+* 請注意分隔符號是 tab
 * 修改完畢記得存檔，然後重新執行 python md2epub.py [enter] 
 * 在 EPUB 資料夾裡就會看到新生成的 test01.epub，制作電子書就是這麼簡單 !
 
