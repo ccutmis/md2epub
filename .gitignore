@@ -27,3 +27,4 @@ EPUB/*
 *.epub
 *.htm
 *.ncx
+resource/setting.txt
