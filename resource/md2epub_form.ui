@@ -453,6 +453,21 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>txt_fileName</tabstop>
+  <tabstop>txt_bookName</tabstop>
+  <tabstop>txt_author</tabstop>
+  <tabstop>button_go</tabstop>
+  <tabstop>txt_SOURCE_DIR_ROOT</tabstop>
+  <tabstop>txt_TEMP_DIR_ROOT</tabstop>
+  <tabstop>txt_RESULT_DIR_ROOT</tabstop>
+  <tabstop>txt_EPUB_DIR_ROOT</tabstop>
+  <tabstop>txt_IMAGES_DIR_ROOT</tabstop>
+  <tabstop>txt_CSS_LOC</tabstop>
+  <tabstop>txt_EBOOK_ENGINE</tabstop>
+  <tabstop>txt_ncx_fname</tabstop>
+  <tabstop>txt_opf_fname</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
