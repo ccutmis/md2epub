@@ -49,7 +49,7 @@ class MdToEpub():
         # call escape_illgal_chars()
         fr=re.sub(r"([^`]{1})(`)([^`]{1}.*?[^`]{1})(`)([^`]{1})",r"\1『\3』\5",fr,re.DOTALL)
         ls=re.findall("```.*?```",fr,re.DOTALL)
-        print(len(ls))
+        #print(len(ls))
         for i  in ls:
             subtxt=i
             start=fr.find(i)
@@ -104,10 +104,37 @@ class MdToEpub():
         tmp_htm=tmp_htm.replace("<pre>\n","<pre>")
         with open(htm_url,'w+',encoding='utf-8') as hf:
             hf.write(tmp_header+tmp_htm+tmp_footer)
-        print('ADD_HEADLINE_NUM_TO_HTM OKAY!')
+        #print('ADD_HEADLINE_NUM_TO_HTM OKAY!')
         return headline_ls,used_img_ls
-        
-    
+
+    def fix_table_view(self,htm_url):
+        with open(htm_url,'r',encoding='utf-8') as f:
+            source = f.read()
+        ls = re.findall("<p>[^\|]*\|.*?\n.*?<\/p>",source,re.DOTALL)
+        #print('fix_table_view ls: ',ls)
+        for i  in ls:
+            subtxt=i
+            start=source.find(i)
+            start2=start+len(subtxt)
+            source=source[:start]+'<table>'+self.fix_table_view_sub(i)+'</table>'+source[start2:]
+        with open(htm_url,'w+',encoding='utf-8') as f:
+             f.write(source)
+
+    def fix_table_view_sub(self,tr_txt):
+        tmp_txt = tr_txt.replace('<p>','').replace('</p>','')
+        output = ""
+        ls = tmp_txt.split('\n')
+        row_mode = 'th'
+        for i in ls:
+            if i.find(':---')!=-1:
+                row_mode = 'td'
+                continue
+            output += '<tr>'
+            for j in i.split('|'):
+                output += f"<{row_mode}>{j}</{row_mode}>"
+            output += '</tr>'
+        return output
+
     def gent_ncx_from_htm(self,htm_fname,tmp_folder,book_name,h_text_ls):
         htm_fname1= htm_fname if htm_fname.find("\\")==-1 else htm_fname.split("\\")[-1]
         doc_title=book_name
@@ -194,6 +221,7 @@ class MdToEpub():
         # step1: md 2 htm save to temp
         header_txt=self.gent_htm_from_md(self.setting['SOURCE_DIR_ROOT'].strip(),self.setting['TEMP_DIR_ROOT'].strip(),self.setting['fileName'].strip())
         headline_ls,used_img_ls=self.add_headline_num_to_htm(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),header_txt,self.setting['CSS_LOC'].strip())
+        self.fix_table_view(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"))
         #print(headline_ls)
         self.gent_ncx_from_htm(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),self.setting['TEMP_DIR_ROOT'].strip(),self.setting['bookName'].strip(),headline_ls)
         self.gent_content_opf(self.setting['TEMP_DIR_ROOT'].strip()+self.setting['fileName'].strip().replace(".md",".htm"),self.setting['ncx_fname'].strip(),self.setting['TEMP_DIR_ROOT'].strip()+self.setting['opf_fname'].strip(),self.setting['bookName'].strip(),self.setting['author'].strip(),used_img_ls)

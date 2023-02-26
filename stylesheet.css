@@ -13,3 +13,5 @@ img{max-width:95%;display:block;margin:5px auto;}
 pre{background-color:#eee;border:dashed 1px #666;color:#000;margin:5px;}
 ul li{list-style-type:none;}
 hr{line-height:0px;height:0px; border:none;margin:10px 0px;border-top: 5px dashed #999;}
+table tr th{background-color: lightgray; color: #000;padding:10px;}
+table tr td{border-bottom: dotted 1px #999;padding:5px;}
